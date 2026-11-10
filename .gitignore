@@ -1,0 +1,32 @@
+# Dependencies
+node_modules/
+.npm/
+.pnpm-store/
+
+# Environment / secrets — never commit
+.env
+.env.*
+!.env.example
+.dev.vars
+.wrangler/
+.mf/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+*.log
+
+# Test / build artifacts
+coverage/
+dist/
+.cache/
+tmp/
+*.tgz
+
+# Local Apps Script clasp credentials (if used later)
+.clasp.json
+creds.json
+token.json

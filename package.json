@@ -1,0 +1,20 @@
+{
+  "name": "ward-pta-signin",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Ward Traditional Academy PTA meeting sign-in (Cloudflare Pages + Google Apps Script)",
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/*.test.js",
+    "dev": "wrangler pages dev public --compatibility-date=2024-11-01",
+    "mock:apps-script": "node scripts/mock-apps-script.mjs",
+    "test:ui": "node scripts/ui-smoke.mjs"
+  },
+  "devDependencies": {
+    "puppeteer-core": "^25.17.0",
+    "wrangler": "^4.0.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

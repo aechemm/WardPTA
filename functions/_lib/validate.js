@@ -59,8 +59,15 @@ export function buildUpstreamPayload(body) {
 
 export function sanitizeClientError(message) {
   const msg = String(message || 'Request failed.');
-  if (/api_secret|script property|not configured/i.test(msg)) {
-    return 'Sign-in service is temporarily unavailable.';
+  // Setup guidance — do not echo secret values.
+  if (/missing API_SECRET|not configured \(missing API_SECRET\)/i.test(msg)) {
+    return 'Apps Script is missing Script Property API_SECRET (or an old deployment is still live). Add it, then Deploy → New version.';
+  }
+  if (/script property/i.test(msg)) {
+    return 'Apps Script Script Properties are not set up correctly.';
+  }
+  if (/unauthorized/i.test(msg)) {
+    return 'Unauthorized — Cloudflare API_SECRET does not match Apps Script API_SECRET.';
   }
   return msg.slice(0, 300);
 }

@@ -67,11 +67,15 @@ describe('buildUpstreamPayload', () => {
 });
 
 describe('sanitizeClientError', () => {
-  it('hides secret/config details', () => {
-    assert.equal(
+  it('explains missing Apps Script API_SECRET without leaking values', () => {
+    assert.match(
       sanitizeClientError('Server is not configured (missing API_SECRET).'),
-      'Sign-in service is temporarily unavailable.'
+      /Apps Script is missing Script Property API_SECRET/
     );
+  });
+
+  it('explains secret mismatch', () => {
+    assert.match(sanitizeClientError('Unauthorized.'), /does not match/);
   });
 
   it('passes through normal user errors', () => {
